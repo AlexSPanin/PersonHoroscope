@@ -9,17 +9,222 @@ import Foundation
 import CoreText
 import UIKit
 
-class DataManager {
-    
-    static let shared = DataManager()
-    
-    let horoscopeTitle = TitleHoroscope.getTitleHoroscope()
-    
-    let zodiacTitle = NamesPeriod.getNamesPeriod(for: .zodiac)
-    let chinaTitle = NamesPeriod.getNamesPeriod(for: .chine)
-    let druidTitle = NamesPeriod.getNamesPeriod(for: .druid)
-    
-    private init() {}
+// MARK - массив наименований периодов гороскопов и интервалы периодов
+
+struct DataManager {
+    let period: Period
+    let start: String
+    let finish: String
+    let name: String
+    let image: String
+    let title: String
+    let forecast: String
+   
+    static func getNamesPeriod(for sender: Horoscope) -> [DataManager] {
+        switch sender {
+        case .zodiac:
+            return [
+                DataManager(period: .aries, start: "0321", finish: "0420", name: "Овен",image: "aries",
+                            title: TitlePeriod.getTitlePeriod(period: .aries).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .aries).forecast),
+                DataManager(period: .taurus, start: "0421", finish: "0521", name: "Телец", image: "taurus",
+                            title: TitlePeriod.getTitlePeriod(period: .taurus).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .taurus).forecast),
+                DataManager(period: .gemini, start: "0522", finish: "0621", name: "Близнецы", image: "gemini",
+                            title: TitlePeriod.getTitlePeriod(period: .gemini).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .gemini).forecast),
+                DataManager(period: .cancer, start: "0622", finish: "0722", name: "Рак", image: "cancer",
+                            title: TitlePeriod.getTitlePeriod(period: .cancer).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .cancer).forecast),
+                DataManager(period: .leo, start: "0723", finish: "0823", name: "Лев", image: "leo",
+                            title: TitlePeriod.getTitlePeriod(period: .leo).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .leo).forecast),
+                DataManager(period: .virgo, start: "0824", finish: "0922", name: "Дева", image: "virgo",
+                            title: TitlePeriod.getTitlePeriod(period: .virgo).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .virgo).forecast),
+                DataManager(period: .libra, start: "0923", finish: "1023", name: "Весы", image: "libra",
+                            title: TitlePeriod.getTitlePeriod(period: .libra).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .libra).forecast),
+                DataManager(period: .scorpio, start: "1024", finish: "1122", name: "Скорпион", image: "scorpio",
+                            title: TitlePeriod.getTitlePeriod(period: .scorpio).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .scorpio).forecast),
+                DataManager(period: .sagittarius, start: "1123", finish: "1221", name: "Стрелец", image: "sagittarius",
+                            title: TitlePeriod.getTitlePeriod(period: .sagittarius).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .sagittarius).forecast),
+                DataManager(period: .capricorn, start: "1222", finish: "0120", name: "Козерог", image: "capricorn",
+                            title: TitlePeriod.getTitlePeriod(period: .capricorn).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .capricorn).forecast),
+                DataManager(period: .aquarius, start: "0121", finish: "0218", name: "Водолей", image: "aquarius",
+                            title: TitlePeriod.getTitlePeriod(period: .aquarius).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .aquarius).forecast),
+                DataManager(period: .pisces, start: "0219", finish: "0320", name: "Рыбы", image: "pisces",
+                            title: TitlePeriod.getTitlePeriod(period: .pisces).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .pisces).forecast)
+            ]
+        case .druid:
+            return [
+                DataManager(period: .apple, start: "1223", finish: "0101", name: "Яблоня", image: "apple",
+                            title: TitlePeriod.getTitlePeriod(period: .apple).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .apple).forecast),
+                DataManager(period: .fir, start: "0102", finish: "0111", name: "Пихта", image: "fir",
+                            title: TitlePeriod.getTitlePeriod(period: .fir).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .fir).forecast),
+                DataManager(period: .elm, start: "0112", finish: "0124", name: "Вяз", image: "elm",
+                            title: TitlePeriod.getTitlePeriod(period: .elm).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .elm).forecast),
+                DataManager(period: .cypress, start: "0125", finish: "0203", name: "Кипарис", image: "cypress",
+                            title: TitlePeriod.getTitlePeriod(period: .cypress).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .cypress).forecast),
+                DataManager(period: .poplar, start: "0204", finish: "0208", name: "Тополь", image: "poplar",
+                            title: TitlePeriod.getTitlePeriod(period: .poplar).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .poplar).forecast),
+                DataManager(period: .cedar, start: "0209", finish: "0218", name: "Кедр", image: "cedar",
+                            title: TitlePeriod.getTitlePeriod(period: .cedar).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .cedar).forecast),
+                DataManager(period: .pine, start: "0219", finish: "0229", name: "Сосна", image: "pine",
+                            title: TitlePeriod.getTitlePeriod(period: .pine).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .pine).forecast),
+                DataManager(period: .willow, start: "0301", finish: "0310", name: "Ива", image: "willow",
+                            title: TitlePeriod.getTitlePeriod(period: .willow).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .willow).forecast),
+                DataManager(period: .linder, start: "0311", finish: "0320", name: "Липа", image: "linder",
+                            title: TitlePeriod.getTitlePeriod(period: .linder).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .linder).forecast),
+                DataManager(period: .oak, start: "0321", finish: "0321", name: "Дуб", image: "oak",
+                            title: TitlePeriod.getTitlePeriod(period: .oak).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .oak).forecast),
+                DataManager(period: .hazel, start: "0322", finish: "0331", name: "Орешник", image: "hazel",
+                            title: TitlePeriod.getTitlePeriod(period: .hazel).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .hazel).forecast),
+                DataManager(period: .rowan, start: "0401", finish: "0410", name: "Рябина", image: "rowan",
+                            title: TitlePeriod.getTitlePeriod(period: .rowan).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .rowan).forecast),
+                DataManager(period: .maple, start: "0411", finish: "0420", name: "Клен", image: "maple",
+                            title: TitlePeriod.getTitlePeriod(period: .maple).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .maple).forecast),
+                DataManager(period: .nut, start: "0421", finish: "0430", name: "Орех", image: "nut",
+                            title: TitlePeriod.getTitlePeriod(period: .nut).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .nut).forecast),
+                DataManager(period: .jasmine, start: "0501", finish: "0514", name: "Жасмин", image: "jasmine",
+                            title: TitlePeriod.getTitlePeriod(period: .jasmine).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .jasmine).forecast),
+                DataManager(period: .chestnut, start: "0515", finish: "0524", name: "Каштан", image: "chestnut",
+                            title: TitlePeriod.getTitlePeriod(period: .chestnut).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .chestnut).forecast),
+                DataManager(period: .ash, start: "0525", finish: "0603", name: "Ясень", image: "ash",
+                            title: TitlePeriod.getTitlePeriod(period: .ash).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .ash).forecast),
+                DataManager(period: .hornbeam, start: "0604", finish: "0613", name: "Граб", image: "hornbeam",
+                            title: TitlePeriod.getTitlePeriod(period: .hornbeam).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .hornbeam).forecast),
+                DataManager(period: .figs, start: "0614", finish: "0623", name: "Инжир", image: "figs",
+                            title: TitlePeriod.getTitlePeriod(period: .figs).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .figs).forecast),
+                DataManager(period: .birch, start: "0624", finish: "0624", name: "Береза", image: "birch",
+                            title: TitlePeriod.getTitlePeriod(period: .birch).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .birch).forecast),
+                DataManager(period: .apple, start: "0625", finish: "0704", name: "Яблоня", image: "apple",
+                            title: TitlePeriod.getTitlePeriod(period: .apple).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .apple).forecast),
+                DataManager(period: .fir, start: "0705", finish: "0714", name: "Пихта", image: "fir",
+                            title: TitlePeriod.getTitlePeriod(period: .fir).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .fir).forecast),
+                DataManager(period: .elm, start: "0715", finish: "0725", name: "Вяз", image: "elm",
+                            title: TitlePeriod.getTitlePeriod(period: .elm).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .elm).forecast),
+                DataManager(period: .cypress, start: "0726", finish: "0804", name: "Кипарис", image: "cypress",
+                            title: TitlePeriod.getTitlePeriod(period: .cypress).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .cypress).forecast),
+                DataManager(period: .poplar, start: "0805", finish: "0813", name: "Тополь", image: "poplar",
+                            title: TitlePeriod.getTitlePeriod(period: .poplar).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .poplar).forecast),
+                DataManager(period: .cedar, start: "0814", finish: "0823", name: "Кедр", image: "cedar",
+                            title: TitlePeriod.getTitlePeriod(period: .cedar).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .cedar).forecast),
+                DataManager(period: .pine, start: "0824", finish: "0902", name: "Сосна", image: "pine",
+                            title: TitlePeriod.getTitlePeriod(period: .pine).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .pine).forecast),
+                DataManager(period: .willow, start: "0903", finish: "0912", name: "Ива", image: "willow",
+                            title: TitlePeriod.getTitlePeriod(period: .willow).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .willow).forecast),
+                DataManager(period: .linder, start: "0913", finish: "0922", name: "Липа", image: "linder",
+                            title: TitlePeriod.getTitlePeriod(period: .linder).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .linder).forecast),
+                DataManager(period: .olive, start: "0923", finish: "0923", name: "Маслина", image: "olive",
+                            title: TitlePeriod.getTitlePeriod(period: .olive).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .olive).forecast),
+                DataManager(period: .hazel, start: "0924", finish: "1003", name: "Орешник", image: "hazel",
+                            title: TitlePeriod.getTitlePeriod(period: .hazel).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .hazel).forecast),
+                DataManager(period: .rowan, start: "1004", finish: "1013", name: "Рябина", image: "rowan",
+                            title: TitlePeriod.getTitlePeriod(period: .rowan).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .rowan).forecast),
+                DataManager(period: .maple, start: "1014", finish: "1023", name: "Клен", image: "maple",
+                            title: TitlePeriod.getTitlePeriod(period: .maple).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .maple).forecast),
+                DataManager(period: .nut, start: "1024", finish: "1102", name: "Орех", image: "nut",
+                            title: TitlePeriod.getTitlePeriod(period: .aquarius).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .aquarius).forecast),
+                DataManager(period: .jasmine, start: "1103", finish: "1111", name: "Жасмин", image: "jasmine",
+                            title: TitlePeriod.getTitlePeriod(period: .jasmine).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .jasmine).forecast),
+                DataManager(period: .chestnut, start: "1112", finish: "1121", name: "Каштан", image: "chestnut",
+                            title: TitlePeriod.getTitlePeriod(period: .chestnut).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .chestnut).forecast),
+                DataManager(period: .ash, start: "1122", finish: "1201", name: "Ясень", image: "ash",
+                            title: TitlePeriod.getTitlePeriod(period: .ash).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .ash).forecast),
+                DataManager(period: .hornbeam, start: "1202", finish: "1211", name: "Граб", image: "hornbeam",
+                            title: TitlePeriod.getTitlePeriod(period: .hornbeam).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .hornbeam).forecast),
+                DataManager(period: .figs, start: "1212", finish: "1220", name: "Инжир", image: "figs",
+                            title: TitlePeriod.getTitlePeriod(period: .figs).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .figs).forecast),
+                DataManager(period: .beech, start: "1221", finish: "1222", name: "Бук", image: "beech",
+                            title: TitlePeriod.getTitlePeriod(period: .beech).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .beech).forecast)
+            ]
+        case .china:
+            return [
+                DataManager(period: .monkey, start: "2028", finish: "2028", name: "Обезьяны", image: "monkey",
+                            title: TitlePeriod.getTitlePeriod(period: .monkey).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .monkey).forecast),
+                DataManager(period: .rooster, start: "2029", finish: "2029", name: "Петуха", image: "rooster",
+                            title: TitlePeriod.getTitlePeriod(period: .rooster).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .rooster).forecast),
+                DataManager(period: .dog, start: "2030", finish: "2030", name: "Собаки", image: "dog",
+                            title: TitlePeriod.getTitlePeriod(period: .dog).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .dog).forecast),
+                DataManager(period: .pig, start: "2031", finish: "2031", name: "Свиньи", image: "pig",
+                            title: TitlePeriod.getTitlePeriod(period: .pig).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .pig).forecast),
+                DataManager(period: .rat, start: "2032", finish: "2032", name: "Крысы", image: "rat",
+                            title: TitlePeriod.getTitlePeriod(period: .rat).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .rat).forecast),
+                DataManager(period: .ox, start: "2033", finish: "2033", name: "Быка", image: "ox",
+                            title: TitlePeriod.getTitlePeriod(period: .ox).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .ox).forecast),
+                DataManager(period: .tiger, start: "2034", finish: "2034", name: "Тигра", image: "tiger",
+                            title: TitlePeriod.getTitlePeriod(period: .tiger).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .tiger).forecast),
+                DataManager(period: .rabbit, start: "2035", finish: "2035", name: "Зайца", image: "rabbit",
+                            title: TitlePeriod.getTitlePeriod(period: .rabbit).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .rabbit).forecast),
+                DataManager(period: .dragon, start: "2036", finish: "2036", name: "Дракона", image: "dragon",
+                            title: TitlePeriod.getTitlePeriod(period: .dragon).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .dragon).forecast),
+                DataManager(period: .snake, start: "2037", finish: "2037", name: "Змеи", image: "snake",
+                            title: TitlePeriod.getTitlePeriod(period: .snake).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .snake).forecast),
+                DataManager(period: .horse, start: "2038", finish: "2038", name: "Лошади", image: "horse",
+                            title: TitlePeriod.getTitlePeriod(period: .horse).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .horse).forecast),
+                DataManager(period: .sheeps, start: "2039", finish: "2039", name: "Овцы", image: "sheeps",
+                            title: TitlePeriod.getTitlePeriod(period: .sheeps).title,
+                            forecast: TitlePeriod.getTitlePeriod(period: .sheeps).forecast)
+            ]
+        }
+    }
 }
 
 // MARK - массивs описаний гороскопов и их периодов
@@ -32,165 +237,86 @@ struct TitleHoroscope {
     static func getTitleHoroscope() -> [TitleHoroscope] {
         [
             TitleHoroscope(horoscope: .zodiac, title: Horoscope.zodiac.rawValue, image: "zodiac"),
-            TitleHoroscope(horoscope: .chine, title: Horoscope.chine.rawValue, image: "china"),
+            TitleHoroscope(horoscope: .china, title: Horoscope.china.rawValue, image: "china"),
             TitleHoroscope(horoscope: .druid, title: Horoscope.druid.rawValue, image: "druid")
         ]
     }
 }
 
-// MARK - массив наименований периодов гороскопов и интервалы периодов
+// MARK - получение прогноза и описание конкретного периода
 
-struct NamesPeriod {
-    let period: PeriodAbout
-    let start: String
-    let finish: String
-    let name: String
-    let titleAbout: String
-    let image: String
-   
-    static func getNamesPeriod(for sender: Horoscope) -> [NamesPeriod] {
-        switch sender {
-        case .zodiac:
-            return [
-                NamesPeriod(
-                    period: .aries, start: "0321", finish: "0420", name: "Овен", titleAbout: PeriodAbout.aries.rawValue, image: "aries"),
-                NamesPeriod(
-                    period: .taurus, start: "0421", finish: "0521", name: "Телец", titleAbout: PeriodAbout.taurus.rawValue, image: "taurus"),
-                NamesPeriod(
-                    period: .gemini, start: "0522", finish: "0621", name: "Близнецы", titleAbout: PeriodAbout.gemini.rawValue, image: "gemini"),
-                NamesPeriod(
-                    period: .cancer, start: "0622", finish: "0722", name: "Рак", titleAbout: PeriodAbout.cancer.rawValue, image: "cancer"),
-                NamesPeriod(
-                    period: .leo, start: "0723", finish: "0823", name: "Лев", titleAbout: PeriodAbout.leo.rawValue, image: "leo"),
-                NamesPeriod(
-                    period: .virgo, start: "0824", finish: "0922", name: "Дева", titleAbout: PeriodAbout.virgo.rawValue, image: "virgo"),
-                NamesPeriod(
-                    period: .libra, start: "0923", finish: "1023", name: "Весы", titleAbout: PeriodAbout.libra.rawValue, image: "libra"),
-                NamesPeriod(
-                    period: .scorpio, start: "1024", finish: "1122", name: "Скорпион", titleAbout: PeriodAbout.scorpio.rawValue, image: "scorpio"),
-                NamesPeriod(
-                    period: .sagittarius, start: "1123", finish: "1221", name: "Стрелец", titleAbout: PeriodAbout.sagittarius.rawValue, image: "sagittarius"),
-                NamesPeriod(
-                    period: .capricorn, start: "1222", finish: "0120", name: "Козерог", titleAbout: PeriodAbout.capricorn.rawValue, image: "capricorn"),
-                NamesPeriod(
-                    period: .aquarius, start: "0121", finish: "0218", name: "Водолей", titleAbout: PeriodAbout.aquarius.rawValue, image: "aquarius"),
-                NamesPeriod(
-                    period: .pisces, start: "0219", finish: "0320", name: "Рыбы", titleAbout: PeriodAbout.pisces.rawValue, image: "pisces")
-            ]
-        case .druid:
-            return [
-                NamesPeriod(
-                    period: .apple, start: "23.12", finish: "01.01", name: "Яблоня", titleAbout: PeriodAbout.apple.rawValue, image: "apple"),
-                NamesPeriod(
-                    period: .fir, start: "02.01", finish: "11.01", name: "Пихта", titleAbout: PeriodAbout.fir.rawValue, image: "fir"),
-                NamesPeriod(
-                    period: .elm, start: "12.01", finish: "24.01", name: "Вяз", titleAbout: PeriodAbout.elm.rawValue, image: "elm"),
-                NamesPeriod(
-                    period: .cypress, start: "25.01", finish: "03.02", name: "Кипарис", titleAbout: PeriodAbout.cypress.rawValue, image: "cypress"),
-                NamesPeriod(
-                    period: .poplar, start: "04.02", finish: "08.02", name: "Тополь", titleAbout: PeriodAbout.poplar.rawValue, image: "poplar"),
-                NamesPeriod(
-                    period: .cedar, start: "09.02", finish: "18.02", name: "Кедр", titleAbout: PeriodAbout.cedar.rawValue, image: "cedar"),
-                NamesPeriod(
-                    period: .pine, start: "19.02", finish: "29.02", name: "Сосна", titleAbout: PeriodAbout.pine.rawValue, image: "pine"),
-                NamesPeriod(
-                    period: .willow, start: "01.03", finish: "10.03", name: "Ива", titleAbout: PeriodAbout.willow.rawValue, image: "willow"),
-                NamesPeriod(
-                    period: .linder, start: "11.03", finish: "20.03", name: "Липа", titleAbout: PeriodAbout.linder.rawValue, image: "linder"),
-                NamesPeriod(
-                    period: .oak, start: "21.03", finish: "21.03", name: "Дуб", titleAbout: PeriodAbout.oak.rawValue, image: "oak"),
-                NamesPeriod(
-                    period: .hazel, start: "22.03", finish: "31.03", name: "Орешник", titleAbout: PeriodAbout.hazel.rawValue, image: "hazel"),
-                NamesPeriod(
-                    period: .rowan, start: "01.04", finish: "10.04", name: "Рябина", titleAbout: PeriodAbout.rowan.rawValue, image: "rowan"),
-                NamesPeriod(
-                    period: .maple, start: "11.04", finish: "20.04", name: "Клен", titleAbout: PeriodAbout.maple.rawValue, image: "maple"),
-                NamesPeriod(
-                    period: .nut, start: "21.04", finish: "30.04", name: "Орех", titleAbout: PeriodAbout.nut.rawValue, image: "nut"),
-                NamesPeriod(
-                    period: .jasmine, start: "01.05", finish: "14.05", name: "Жасмин", titleAbout: PeriodAbout.jasmine.rawValue, image: "jasmine"),
-                NamesPeriod(
-                    period: .chestnut, start: "15.05", finish: "24.05", name: "Каштан", titleAbout: PeriodAbout.chestnut.rawValue, image: "chestnut"),
-                NamesPeriod(
-                    period: .ash, start: "25.05", finish: "03.06", name: "Ясень", titleAbout: PeriodAbout.ash.rawValue, image: "ash"),
-                NamesPeriod(
-                    period: .hornbeam, start: "04.06", finish: "13.06", name: "Граб", titleAbout: PeriodAbout.hornbeam.rawValue, image: "hornbeam"),
-                NamesPeriod(
-                    period: .figs, start: "14.06", finish: "23.06", name: "Инжир", titleAbout: PeriodAbout.figs.rawValue, image: "figs"),
-                NamesPeriod(
-                    period: .birch, start: "24.06", finish: "24.06", name: "Береза", titleAbout: PeriodAbout.birch.rawValue, image: "birch"),
-                NamesPeriod(
-                    period: .apple, start: "25.06", finish: "04.07", name: "Яблоня", titleAbout: PeriodAbout.apple.rawValue, image: "apple"),
-                NamesPeriod(
-                    period: .fir, start: "05.07", finish: "14.07", name: "Пихта", titleAbout: PeriodAbout.fir.rawValue, image: "fir"),
-                NamesPeriod(
-                    period: .elm, start: "15.07", finish: "25.07", name: "Вяз", titleAbout: PeriodAbout.elm.rawValue, image: "elm"),
-                NamesPeriod(
-                    period: .cypress, start: "26.07", finish: "04.08", name: "Кипарис", titleAbout: PeriodAbout.cypress.rawValue, image: "cypress"),
-                NamesPeriod(
-                    period: .poplar, start: "05.08", finish: "13.08", name: "Тополь", titleAbout: PeriodAbout.poplar.rawValue, image: "poplar"),
-                NamesPeriod(
-                    period: .cedar, start: "14.08", finish: "23.08", name: "Кедр", titleAbout: PeriodAbout.cedar.rawValue, image: "cedar"),
-                NamesPeriod(
-                    period: .pine, start: "24.08", finish: "02.09", name: "Сосна", titleAbout: PeriodAbout.pine.rawValue, image: "pine"),
-                NamesPeriod(
-                    period: .willow, start: "03.09", finish: "12.09", name: "Ива", titleAbout: PeriodAbout.willow.rawValue, image: "willow"),
-                NamesPeriod(
-                    period: .linder, start: "13.09", finish: "22.09", name: "Липа", titleAbout: PeriodAbout.linder.rawValue, image: "linder"),
-                NamesPeriod(
-                    period: .olive, start: "23.09", finish: "23.09", name: "Маслина", titleAbout: PeriodAbout.olive.rawValue, image: "olive"),
-                NamesPeriod(
-                    period: .hazel, start: "24.09", finish: "03.10", name: "Орешник", titleAbout: PeriodAbout.hazel.rawValue, image: "hazel"),
-                NamesPeriod(
-                    period: .rowan, start: "04.10", finish: "13.10", name: "Рябина", titleAbout: PeriodAbout.rowan.rawValue, image: "rowan"),
-                NamesPeriod(
-                    period: .maple, start: "14.10", finish: "23.10", name: "Клен", titleAbout: PeriodAbout.maple.rawValue, image: "maple"),
-                NamesPeriod(
-                    period: .nut, start: "24.10", finish: "02.11", name: "Орех", titleAbout: PeriodAbout.nut.rawValue, image: "nut"),
-                NamesPeriod(
-                    period: .jasmine, start: "03.11", finish: "11.11", name: "Жасмин", titleAbout: PeriodAbout.jasmine.rawValue, image: "jasmine"),
-                NamesPeriod(
-                    period: .chestnut, start: "12.11", finish: "21.11", name: "Каштан", titleAbout: PeriodAbout.chestnut.rawValue, image: "chestnut"),
-                NamesPeriod(
-                    period: .ash, start: "22.11", finish: "01.12", name: "Ясень", titleAbout: PeriodAbout.ash.rawValue, image: "ash"),
-                NamesPeriod(
-                    period: .hornbeam, start: "02.12", finish: "11.12", name: "Граб", titleAbout: PeriodAbout.hornbeam.rawValue, image: "hornbeam"),
-                NamesPeriod(
-                    period: .figs, start: "12.12", finish: "20.12", name: "Инжир", titleAbout: PeriodAbout.figs.rawValue, image: "figs"),
-                NamesPeriod(
-                    period: .beech, start: "21.12", finish: "22.12", name: "Бук", titleAbout: PeriodAbout.beech.rawValue, image: "beech")
-        ]
-        case .chine:
-            return [
-                
-                NamesPeriod(
-                    period: .monkey, start: "2028", finish: "2028", name: "Обезьяны", titleAbout: PeriodAbout.monkey.rawValue, image: "monkey"),
-                NamesPeriod(
-                    period: .rooster, start: "2029", finish: "2029", name: "Петуха", titleAbout: PeriodAbout.rooster.rawValue, image: "rooster"),
-                NamesPeriod(
-                    period: .dog, start: "2030", finish: "2030", name: "Собаки", titleAbout: PeriodAbout.dog.rawValue, image: "dog"),
-                NamesPeriod(
-                    period: .pig, start: "2031", finish: "2031", name: "Свиньи", titleAbout: PeriodAbout.pig.rawValue, image: "pig"),
-                NamesPeriod(
-                    period: .rat, start: "2032", finish: "2032", name: "Крысы", titleAbout: PeriodAbout.rat.rawValue, image: "rat"),
-                NamesPeriod(
-                    period: .ox, start: "2033", finish: "2033", name: "Быка", titleAbout: PeriodAbout.ox.rawValue, image: "ox"),
-                NamesPeriod(
-                    period: .tiger, start: "2034", finish: "2034", name: "Тигра", titleAbout: PeriodAbout.tiger.rawValue, image: "tiger"),
-                NamesPeriod(
-                    period: .rabbit, start: "2035", finish: "2035", name: "Зайца", titleAbout: PeriodAbout.rabbit.rawValue, image: "rabbit"),
-                NamesPeriod(
-                    period: .dragon, start: "2036", finish: "2036", name: "Дракона", titleAbout: PeriodAbout.dragon.rawValue, image: "dragon"),
-                NamesPeriod(
-                    period: .snake, start: "2037", finish: "2037", name: "Змеи", titleAbout: PeriodAbout.snake.rawValue, image: "snake"),
-                NamesPeriod(
-                    period: .horse, start: "2038", finish: "2038", name: "Лошади", titleAbout: PeriodAbout.horse.rawValue, image: "horse"),
-                NamesPeriod(
-                    period: .sheeps, start: "2039", finish: "2039", name: "Овцы", titleAbout: PeriodAbout.sheeps.rawValue, image: "sheeps")
-                ]
+struct TitlePeriod {
+    static func getTitlePeriod(period: Period) -> TitlesPeriods {
+        let titlesPeriods = TitlesPeriods.getTitlesPeriod()
+        
+        for index in titlesPeriods {
+            if period == index.period { return index}
         }
+        return titlesPeriods[0]
     }
 }
+
+// MARK -  общий массив прогнозов и описаний периодов гороскопа
+
+struct TitlesPeriods {
+    let period: Period
+    let title: String
+    let forecast: String
+    
+    static func getTitlesPeriod() -> [TitlesPeriods] {
+        [
+            TitlesPeriods(period: .aries, title: "About aries", forecast: "About aries"),
+            TitlesPeriods(period: .taurus, title: "About taurus", forecast: ""),
+            TitlesPeriods(period: .gemini, title: "About gemini", forecast: ""),
+            TitlesPeriods(period: .cancer, title: "About cancer", forecast: ""),
+            TitlesPeriods(period: .leo, title: "About leo", forecast: ""),
+            TitlesPeriods(period: .virgo, title: "About virgo", forecast: ""),
+            TitlesPeriods(period: .libra, title: "About libra", forecast: ""),
+            TitlesPeriods(period: .scorpio, title: "About scorpio", forecast: ""),
+            TitlesPeriods(period: .sagittarius, title: "About sagittarius", forecast: ""),
+            TitlesPeriods(period: .capricorn, title: "About capricorn", forecast: ""),
+            TitlesPeriods(period: .aquarius, title: "About aquarius", forecast: ""),
+            TitlesPeriods(period: .pisces, title: "About pisces", forecast: ""),
+            
+            TitlesPeriods(period: .rat, title: "About rat", forecast: ""),
+            TitlesPeriods(period: .ox, title: "About ox", forecast: ""),
+            TitlesPeriods(period: .tiger, title: "About tiger", forecast: ""),
+            TitlesPeriods(period: .rabbit, title: "About rabbit", forecast: ""),
+            TitlesPeriods(period: .dragon, title: "About dragon", forecast: ""),
+            TitlesPeriods(period: .snake, title: "About snake", forecast: ""),
+            TitlesPeriods(period: .horse, title: "About horse", forecast: ""),
+            TitlesPeriods(period: .sheeps, title: "About shuups", forecast: ""),
+            TitlesPeriods(period: .monkey, title: "About monkey", forecast: ""),
+            TitlesPeriods(period: .rooster, title: "About rooster", forecast: ""),
+            TitlesPeriods(period: .dog, title: "About dog", forecast: ""),
+            TitlesPeriods(period: .pig, title: "About pig", forecast: ""),
+            
+            TitlesPeriods(period: .apple, title: "About apple", forecast: ""),
+            TitlesPeriods(period: .fir, title: "About fir", forecast: ""),
+            TitlesPeriods(period: .elm, title: "About elm", forecast: ""),
+            TitlesPeriods(period: .cypress, title: "About cypress", forecast: ""),
+            TitlesPeriods(period: .poplar, title: "About poplar", forecast: ""),
+            TitlesPeriods(period: .cedar, title: "About cedar", forecast: ""),
+            TitlesPeriods(period: .pine, title: "About pine", forecast: ""),
+            TitlesPeriods(period: .willow, title: "About willow", forecast: ""),
+            TitlesPeriods(period: .linder, title: "About linder", forecast: ""),
+            TitlesPeriods(period: .oak, title: "About oak", forecast: ""),
+            TitlesPeriods(period: .hazel, title: "About hazel", forecast: ""),
+            TitlesPeriods(period: .rowan, title: "About rowan", forecast: ""),
+            TitlesPeriods(period: .maple, title: "About maple", forecast: ""),
+            TitlesPeriods(period: .nut, title: "About nut", forecast: ""),
+            TitlesPeriods(period: .jasmine, title: "About jasmine", forecast: ""),
+            TitlesPeriods(period: .chestnut, title: "About chestnut", forecast: ""),
+            TitlesPeriods(period: .ash, title: "About ash", forecast: ""),
+            TitlesPeriods(period: .hornbeam, title: "About hornbeam", forecast: ""),
+            TitlesPeriods(period: .figs, title: "About figs", forecast: ""),
+            TitlesPeriods(period: .birch, title: "About birch", forecast: ""),
+            TitlesPeriods(period: .olive, title: "About olive", forecast: ""),
+            TitlesPeriods(period: .beech, title: "About beech", forecast: "")
+        ]
+    }
+}
+
 
 // MARK - массив цвета фона в зависимости от типа стиля и типа гороскопа
 
@@ -216,74 +342,50 @@ struct HoroscopeStyle {
             HoroscopeStyle(horoscope: .druid, style: .gray, background: colorGray),
             HoroscopeStyle(horoscope: .druid, style: .color, background: colorDruid),
             
-            HoroscopeStyle(horoscope: .chine, style: .byDefault, background: colorDefault),
-            HoroscopeStyle(horoscope: .chine, style: .gray, background: colorGray),
-            HoroscopeStyle(horoscope: .chine, style: .color, background: colorChina)
+            HoroscopeStyle(horoscope: .china, style: .byDefault, background: colorDefault),
+            HoroscopeStyle(horoscope: .china, style: .gray, background: colorGray),
+            HoroscopeStyle(horoscope: .china, style: .color, background: colorChina)
         ]
     }
 }
+
+// MARK -  о разработчиках
  
+struct Developer {
+    let names: String
+    let details: String
+    let image: String
+    static func getDeveloper() -> [Developer]{
+        [
+            Developer(names: "Sergey ", details: "Team Leader", image: "sergey"),
+            Developer(names: "Alexander Panin", details: "Developer", image: "alexander")
+        ]
+    }
+}
+
 // MARK - перечисления типа гороскопов, типа стиля и периодов гороскопов
 
 enum Horoscope: String {
     case zodiac = "About of Horoscope Zodiac"
     case druid = "About of Horoscope Druid"
-    case chine = "About of Horoscope Chine"
+    case china = "About of Horoscope Chine"
 }
 
 enum Style {
     case byDefault, gray, color
 }
 
-enum PeriodAbout: String {
-    case aries = "About aries"
-    case taurus = "About taurus"
-    case gemini = "About gemini"
-    case cancer = "About cancer"
-    case leo = "About leo"
-    case virgo = "About virgo"
-    case libra = "About libra"
-    case scorpio = "About scorpio"
-    case sagittarius = "About sagittarius"
-    case capricorn = "About capricorn"
-    case aquarius = "About aquarius"
-    case pisces = "About pisces"
+enum Period{
+    case aries, taurus, gemini, cancer, leo, virgo,
+         libra, scorpio, sagittarius, capricorn, aquarius, pisces,
     
-    case rat = "About rat"
-    case ox = "About ox"
-    case tiger = "About tiger"
-    case rabbit = "About rabbit"
-    case dragon = "About dragon"
-    case snake = "About snake"
-    case horse = "About horse"
-    case sheeps = "About shuups"
-    case monkey = "About monkey"
-    case rooster = "About rooster"
-    case dog = "About dog"
-    case pig = "About pig"
-    
-    case apple = "About apple"
-    case fir = "About fir"
-    case elm = "About elm"
-    case cypress = "About cypress"
-    case poplar = "About poplar"
-    case cedar = "About cedar"
-    case pine = "About pine"
-    case willow = "About willow"
-    case linder = "About linder"
-    case oak = "About oak"
-    case hazel = "About hazel"
-    case rowan = "About rowan"
-    case maple = "About maple"
-    case nut = "About nut"
-    case jasmine = "About jasmine"
-    case chestnut = "About chestnut"
-    case ash = "About ash"
-    case hornbeam = "About hornbeam"
-    case figs = "About figs"
-    case birch = "About birch"
-    case olive = "About olive"
-    case beech = "About beech"
+         rat, ox, tiger, rabbit, dragon, snake,
+         horse, sheeps, monkey, rooster, dog, pig,
+         
+         apple, fir, elm, cypress, poplar, cedar,
+         pine, willow, linder, oak, hazel, rowan,
+         maple, nut, jasmine, chestnut, ash, hornbeam,
+         figs, birch, olive, beech
 }
 
 
