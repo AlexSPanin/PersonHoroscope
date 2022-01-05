@@ -13,6 +13,8 @@
 		E2ADE407278078B800875C2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2ADE405278078B800875C2E /* Main.storyboard */; };
 		E2ADE409278078B900875C2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2ADE408278078B900875C2E /* Assets.xcassets */; };
 		E2ADE40C278078B900875C2E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2ADE40A278078B900875C2E /* LaunchScreen.storyboard */; };
+		E2ADE41A27807B0800875C2E /* Data manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ADE41927807B0800875C2E /* Data manager.swift */; };
+		E2BA6E3D2784703800B30266 /* HoroscopeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BA6E3C2784703800B30266 /* HoroscopeModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		E2ADE408278078B900875C2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2ADE40B278078B900875C2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E2ADE40D278078B900875C2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E2ADE41927807B0800875C2E /* Data manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data manager.swift"; sourceTree = "<group>"; };
+		E2BA6E3C2784703800B30266 /* HoroscopeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoroscopeModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +60,65 @@
 		E2ADE3FE278078B800875C2E /* PersonHoroscope */ = {
 			isa = PBXGroup;
 			children = (
-				E2ADE3FF278078B800875C2E /* AppDelegate.swift */,
-				E2ADE401278078B800875C2E /* SceneDelegate.swift */,
-				E2ADE403278078B800875C2E /* ViewController.swift */,
-				E2ADE405278078B800875C2E /* Main.storyboard */,
-				E2ADE408278078B900875C2E /* Assets.xcassets */,
-				E2ADE40A278078B900875C2E /* LaunchScreen.storyboard */,
-				E2ADE40D278078B900875C2E /* Info.plist */,
+				E2ADE4152780790300875C2E /* Model */,
+				E2ADE4162780795100875C2E /* Servises */,
+				E2ADE4182780796600875C2E /* Support */,
+				E2ADE4172780795B00875C2E /* Files */,
+				E2ADE414278078F100875C2E /* ViewControlers */,
+				E2ADE413278078D900875C2E /* Storyboards */,
 			);
 			path = PersonHoroscope;
+			sourceTree = "<group>";
+		};
+		E2ADE413278078D900875C2E /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				E2ADE40A278078B900875C2E /* LaunchScreen.storyboard */,
+				E2ADE405278078B800875C2E /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		E2ADE414278078F100875C2E /* ViewControlers */ = {
+			isa = PBXGroup;
+			children = (
+				E2ADE403278078B800875C2E /* ViewController.swift */,
+			);
+			path = ViewControlers;
+			sourceTree = "<group>";
+		};
+		E2ADE4152780790300875C2E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E2BA6E3C2784703800B30266 /* HoroscopeModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E2ADE4162780795100875C2E /* Servises */ = {
+			isa = PBXGroup;
+			children = (
+				E2ADE41927807B0800875C2E /* Data manager.swift */,
+			);
+			path = Servises;
+			sourceTree = "<group>";
+		};
+		E2ADE4172780795B00875C2E /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				E2ADE408278078B900875C2E /* Assets.xcassets */,
+			);
+			path = Files;
+			sourceTree = "<group>";
+		};
+		E2ADE4182780796600875C2E /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				E2ADE3FF278078B800875C2E /* AppDelegate.swift */,
+				E2ADE401278078B800875C2E /* SceneDelegate.swift */,
+				E2ADE40D278078B900875C2E /* Info.plist */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,7 +193,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2ADE404278078B800875C2E /* ViewController.swift in Sources */,
+				E2BA6E3D2784703800B30266 /* HoroscopeModel.swift in Sources */,
 				E2ADE400278078B800875C2E /* AppDelegate.swift in Sources */,
+				E2ADE41A27807B0800875C2E /* Data manager.swift in Sources */,
 				E2ADE402278078B800875C2E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,7 +347,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = QD5349NP78;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PersonHoroscope/Info.plist;
+				INFOPLIST_FILE = PersonHoroscope/Support/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -319,7 +375,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = QD5349NP78;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PersonHoroscope/Info.plist;
+				INFOPLIST_FILE = PersonHoroscope/Support/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
