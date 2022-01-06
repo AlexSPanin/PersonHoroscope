@@ -6,8 +6,6 @@
 //
 
 import Foundation
-import CoreText
-import UIKit
 
 // MARK - массив наименований периодов гороскопов и интервалы периодов
 
@@ -412,37 +410,6 @@ struct TitlesPeriods {
             TitlesPeriods(period: .beech,
                           title: "Люди, родившиеся под покровительством знака Бук, отличаются целеустремленностью и практичностью. Нравом обладают спокойным, твердо расставляя приоритеты. Благоразумие никогда не покидает их, поэтому все, к чему они стремятся, дает положительные результаты. Предпочитая постоянный и проверенный годами круг общения, очень осторожно допускают в него новые знакомства, хотя в отношениях легки, любят хороший юмор и всегда готовы оказать посильную помощь. Присуще им и лидерские качества. Организация и четко выстроенная структура – их конек. Окружающие люди доверяют им, относятся с уважением, ценят в них честность и порядочность. Кроме того, они способны быстро реагировать на обстоятельства, находить альтернативу и оборачивать ситуацию в свою пользу. Природа наградила их отличным здоровьем и привлекательной внешностью, поэтому даже на склоне лет, выглядят они потрясающе и редко жалуются на свое состояние. Как мужчины, так и женщины, родившиеся под знаком Бука, являются хранителями семейного очага. Стремятся к гармонии, уюту и счастливой атмосфере в доме. Они прекрасные родители, заботливые и в меру строгие. В силу своего характера могут быть требовательными, но объективными. Щедрые на похвалу и подарки.",
                           forecast: "Для «буков» год обещает семейное пополнение. Хорошо будет зачать или родить, укрепить отношения с родственниками или наладить связь со старшим поколением.")
-        ]
-    }
-}
-
-// MARK - массив цвета фона в зависимости от типа стиля и типа гороскопа
-
-struct HoroscopeStyle {
-    let horoscope: Horoscope
-    let style: Style
-    let background: UIColor
-    
-    static func getHoroscopeStyle() -> [HoroscopeStyle] {
-        
-        let colorDefault = UIColor(displayP3Red: 1, green: 1, blue: 1, alpha: 1)
-        let colorGray = UIColor(displayP3Red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
-        let colorZodiac = UIColor(displayP3Red: 0, green: 0, blue: 1, alpha: 0.3)
-        let colorDruid = UIColor(displayP3Red: 0, green: 1, blue: 0, alpha: 0.3)
-        let colorChina = UIColor(displayP3Red: 1, green: 0, blue: 0, alpha: 0.3)
-        
-        return [
-            HoroscopeStyle(horoscope: .zodiac, style: .byDefault, background: colorDefault),
-            HoroscopeStyle(horoscope: .zodiac, style: .gray, background: colorGray),
-            HoroscopeStyle(horoscope: .zodiac, style: .color, background: colorZodiac),
-            
-            HoroscopeStyle(horoscope: .druid, style: .byDefault, background: colorDefault),
-            HoroscopeStyle(horoscope: .druid, style: .gray, background: colorGray),
-            HoroscopeStyle(horoscope: .druid, style: .color, background: colorDruid),
-            
-            HoroscopeStyle(horoscope: .china, style: .byDefault, background: colorDefault),
-            HoroscopeStyle(horoscope: .china, style: .gray, background: colorGray),
-            HoroscopeStyle(horoscope: .china, style: .color, background: colorChina)
         ]
     }
 }
