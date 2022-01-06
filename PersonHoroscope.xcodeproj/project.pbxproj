@@ -60,12 +60,12 @@
 		E2ADE3FE278078B800875C2E /* PersonHoroscope */ = {
 			isa = PBXGroup;
 			children = (
+				E2ADE414278078F100875C2E /* ViewControlers */,
+				E2ADE413278078D900875C2E /* Storyboards */,
 				E2ADE4152780790300875C2E /* Model */,
 				E2ADE4162780795100875C2E /* Servises */,
 				E2ADE4182780796600875C2E /* Support */,
 				E2ADE4172780795B00875C2E /* Files */,
-				E2ADE414278078F100875C2E /* ViewControlers */,
-				E2ADE413278078D900875C2E /* Storyboards */,
 			);
 			path = PersonHoroscope;
 			sourceTree = "<group>";

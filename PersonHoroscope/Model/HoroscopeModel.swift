@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 
 struct PersonHoroscope {
@@ -14,6 +15,7 @@ struct PersonHoroscope {
     let periods: [DataManager]  // массив всех периодов гороскопа
     let person: DataManager  // массив индивидуального гороскопа
     let developer: [Developer] // информация о разработчиках
+    let color: UIColor // цвет фона
 }
 
 extension PersonHoroscope {
@@ -23,7 +25,8 @@ extension PersonHoroscope {
             about: AboutHoroscope.gerAboutHoroscope(type: type),
             periods: DataManager.getNamesPeriod(for: type),
             person: Person.getPerson(type: type, data: data),
-            developer: Developer.getDeveloper()
+            developer: Developer.getDeveloper(),
+            color: UIColor(red: 0.9450980425, green: 0.8941176534, blue: 0.8235294223, alpha: 1)
         )
     }
 }
